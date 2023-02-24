@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+        ProjedtPlus - One Stop Project Manager
+    </title>
+    <link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+    <link th:href='@{/css/boxicons.min.css}' rel='stylesheet'>
+
+    <link rel="stylesheet" th:href="@{/libs/owl.carousel/assets/owl.carousel.min.css}">
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/grid.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+
+<link rel="stylesheet" th:href="@{/css/icons.min.css}">
+<link rel="stylesheet" th:href="@{/libs/date-picker/datepicker.css}">
+
+</head>
+<body class="sidebar-expand dark">
+
+<div th:replace="fragments/navbar.html :: sidebar"></div>
+<div th:replace="fragments/navbar.html :: main-header"></div>
+
+
+<div class="main">
+<div class="main-content project">
+<div class="row">
+<div class="col-12">
+    <form th:method="post" th:action="@{/saveproject}">
+<div class="box">
+<div class="box-body">
+<div class="row">
+
+<div class="col-md-8 col-sm-12 mb-24">
+<div class="form-group"> <label class="form-label">Project Name</label> <input class="form-control" placeholder="Project Name" name="name"> </div>
+</div>
+
+    <div class="col-md-4 col-sm-12 mb-24">
+        <div class="form-group"> <label class="form-label">Start Date:</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text"> <i class='bx bx-calendar'></i> </div>
+                </div><input id="startdate" class="form-control fc-datepicker" placeholder="DD-MM-YYY" type="text" name="start_date"> </div>
+            <script>
+                function insertCurrentDate() {
+                    var today = new Date();
+                    var dd = String(today.getDate()).padStart(2, '0');
+                    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+                    var yyyy = today.getFullYear();
+                    today = dd + '-' + mm + '-' + yyyy;
+
+                    document.getElementById("startdate").value = today;
+                }
+
+                window.onload = insertCurrentDate;
+
+            </script>
+        </div>
+    </div>
+
+</div>
+
+
+
+<div class="form-group mb-24"> <label class="form-label">Description:</label>
+<textarea class="form-control" name="description" cols="30" rows="10"></textarea>
+</div>
+</div>
+<div class="gr-btn mt-15"> <a th:href="@{/}" class="btn btn-danger btn-lg mr-15 fs-16">CLOSE</a> <button class="btn btn-primary btn-lg fs-16" type="submit">SUBMIT</button> </div>
+</div>
+    </form>
+</div>
+</div>
+<!--<div id="add_project" class="modal custom-modal fade" role="dialog">-->
+<!--<div class="modal-dialog modal-dialog-centered modal-lg" role="document">-->
+<!--<div class="modal-content">-->
+<!--<div class="modal-header">-->
+<!--<h5 class="modal-title">Create Project</h5>-->
+<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+<!--<span aria-hidden="true">&times;</span>-->
+<!--</button>-->
+<!--</div>-->
+<!--<div class="modal-body">-->
+<!--<form th:method="post" th:action="@{/saveproject}">-->
+<!--<div class="row">-->
+<!--<div class="col-sm-6">-->
+<!--<div class="form-group">-->
+<!--<label>Project Name</label>-->
+<!--<input class="form-control" value="" type="text" name="name">-->
+<!--</div>-->
+<!--</div>-->
+<!--    <div class="col-sm-6">-->
+<!--        <div class="form-group">-->
+<!--            <label>Status</label>-->
+<!--            <input class="form-control" type="radio" name="status">-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--</div>-->
+<!--<div class="row">-->
+<!--<div class="col-sm-6">-->
+<!--<div class="form-group">-->
+<!--<label>Start Date</label>-->
+<!--<div class="cal-icon">-->
+<!--<input class="form-control" type="date" name="start_date">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="col-sm-6">-->
+<!--<div class="form-group">-->
+<!--<label>End Date</label>-->
+<!--<div class="cal-icon">-->
+<!--<input class="form-control " type="date" name="end_date">-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+<!--<label>Description</label>-->
+<!--<textarea rows="4" class="form-control" placeholder="Enter your message here" name="description"></textarea>-->
+<!--</div>-->
+<!--<div class="submit-section">-->
+<!--<button class="btn btn-primary submit-btn">Save</button>-->
+<!--</div>-->
+<!--</form>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+</div>
+</div>
+
+<div class="overlay"></div>
+
+
+<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+<script th:src="@{/libs/moment/min/moment.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/libs/peity/jquery.peity.min.js}"></script>
+<script th:src="@{/libs/chart.js/Chart.bundle.min.js}"></script>
+<script th:src="@{/libs/owl.carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/libs/simplebar/simplebar.min.js}"></script>
+
+<script th:src="@{/js/countto.js}"></script>
+<script th:src="@{/libs/date-picker/datepicker.js}"></script>
+<script th:src="@{/libs/simplebar/simplebar.min.js}"></script>
+
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/shortcode.js}"></script>
+<script th:src="@{/js/pages/datepicker.js}"></script>
+<script>
+    </script>
+</body>
+
+</html>

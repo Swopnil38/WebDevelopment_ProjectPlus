@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+    ProjectPlus - One Stop Project Manager
+    </title>
+<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+    <link th:href='@{/css/boxicons.min.css}' rel='stylesheet'>
+
+    <link rel="stylesheet" th:href='@{/css/icons.min.css}'>
+
+    <link th:href='@{/css/bootstrap.min.css}' rel="stylesheet">
+    <link th:href='@{/css/grid.css}' rel="stylesheet">
+    <link th:href='@{/css/style.css}' rel="stylesheet">
+    <link th:href='@{/css/responsive.css}' rel="stylesheet">
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
+</head>
+
+
+<body class="sidebar-expand dark">
+
+<div th:replace="fragments/navbar.html :: sidebar"></div>
+<div th:replace="fragments/navbar.html :: main-header"></div>
+
+<div class="main">
+<div class="main-content board">
+
+<div class="row">
+<div class="col-12">
+<div class="divider"></div>
+<div class="box-body d-flex justify-content-between pb-0">
+
+
+<div class="action">
+    <a href="#" class="invite"><i class="fas fa-user-plus mr-5"></i>Invite People</a>
+    </div>
+</div>
+</div>
+</div>
+
+<!--    ---------------------------------------- -->
+<div class="row">
+    <div class="col-3 col-xl-3 col-md-4 col-sm-12">
+
+    <div class="box h-100 d-flex align-items-center">
+        <a class="create d-flex bg-primary justify-content-center " href="#" data-bs-toggle="dropdown" target="project" aria-expanded="false"  style="background-color: var(--box-bg) !important;">
+            <div class="icon color-white pt-4 pr-8">
+                <i class="bx bx-down-arrow"></i>
+            </div>
+            <div class="content">
+                <h5 class="color-white project-name">Project Name</h5>
+            </div>
+        </a>
+
+
+
+
+        <ul class="dropdown-menu dropdown-menu-end project " style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(-2px, 56px, 0px);" data-popper-placement="bottom-end">
+<!--            <li ><a href="#"><span th:text="{projects.name}"></span></a></li>-->
+
+            <li class="project-item" th:each="project : ${AllProject}">
+                <a id="project-link" th:text="${project.name}" th:data-id="${project.id}"
+                   th:class="${selectedProjectId == project.id ? 'active' : ''}" >
+
+
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    </div>
+    <div class="col-3 col-xl-3 col-md-4 col-sm-12">
+
+        <div class="box h-100 d-flex align-items-center">
+            <a class="create d-flex bg-primary justify-content-center show" href="#" data-bs-toggle="dropdown" target="board" aria-expanded="false" style="background-color: var(--box-bg) !important;">
+                <div class="icon color-white pt-4 pr-8">
+                    <i class="bx bx-down-arrow"></i>
+                </div>
+                <div class="content">
+                    <h5 class="color-white board-name">Board List</h5>
+                </div>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-end board" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate3d(-2px, 55px, 0px);" data-popper-placement="bottom-end">
+                <li class="board-item" th:each="board : ${AllBoard}" th:data-projectname="${board.project.name}">
+                    <a id="board-link" th:text="${board.name}" th:data-projectname="${board.project.name}">
+
+
+                    </a>
+                </li>
+
+<!--                <li class="board-item">-->
+<!--                    <a id="board-link"></a>-->
+<!--                </li>-->
+
+
+<!--                <li class="board-item" th:each="board : ${AllBoard}"-->
+<!--                    th:data-projectname="${board.project.name}"-->
+
+<!--                    th:text="${board.name}"></li>-->
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+    <!--    ---------------------------------------- -->
+
+
+<div class="col-12">
+<div class="kanban-board card mb-0 pd-0">
+<div class="box-body pd-0">
+<div class="kanban-cont" >
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="edit_card_modal" class="modal custom-modal fade show" role="dialog" aria-modal="true" ">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Task</h4>
+                <button type="button" class="close" data-dismiss="modal">×</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" th:action="@{/update-task}">
+                    <div class="form-group">
+                        <label>Card Name</label>
+                        <input type="text" class="form-control" value="Food Website hero area">
+                    </div>
+                    <div class="form-group">
+                        <label>Assign Date</label>
+                        <div class="cal-icon">
+                            <input class="form-control " type="date" value="">
+                        </div>
+                    </div>
+                    <div class="submit-section text-center">
+                        <button class="btn btn-primary submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="overlay"></div>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var AllBoard = [[${AllBoard}]];
+    /*]]>*/
+</script>
+
+
+<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+<script th:src="@{/libs/jquery/jquery-ui.min.js}"></script>
+<script th:src="@{/libs/moment/min/moment.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/libs/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/libs/peity/jquery.peity.min.js}"></script>
+<script th:src="@{/libs/chart.js/Chart.bundle.min.js}"></script>
+<script th:src="@{/libs/owl.carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.min.js}"></script>
+
+<script th:src="@{/libs/simplebar/simplebar.min.js}"></script>
+
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/shortcode.js}"></script>
+<!--<script th:src="@{/js/script.js}"></script>-->
+
+<script>
+    function initializeKanban() {
+        if($('.kanban-wrap').length>0){
+            $(".kanban-wrap").sortable({
+                connectWith:".kanban-wrap",
+                handle:".kanban-box",
+                placeholder:"drag-placeholder",
+                update: function(event, ui) {
+                    var placeholderParent = $(ui.item).closest('.kanban-list');
+                    // console.log(".drag-placeholder is now associated with the .kanban-wrap element with ID: " + placeholderParent.attr('id'));
+
+                    var taskID = $(ui.item).find('.kanban-box').attr('data-taskid');
+                    console.log(taskID);
+                    var newStatus = placeholderParent.find('.card-title').text();
+                    console.log(newStatus);
+
+                    var dataToSend = {
+                        taskId: taskID,
+                        newStatus: newStatus
+                    };
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/update-task-status",
+                       // contentType: "application/json",
+                       // data: JSON.stringify(dataToSend),
+                        data:{
+                            taskID : parseInt(taskID),
+                            status : newStatus
+                        },
+                        success: function(response) {
+                            // Handle the server response
+                            console.log("CHANGED FINALLY")
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error("Error updating task status: " + textStatus, errorThrown);
+                        }
+                    });
+                }
+            });
+        }
+
+        if($('.datetimepicker').length>0){
+            $('.datetimepicker').datetimepicker({
+                format:'DD/MM/YYYY',
+                icons:{up:"bx bx-chevron-up",down:"bx bx-chevron-down",next:'bx bx-chevron-right',previous:'bx bx-chevron-left'}
+            });
+        }
+    };
+
+    $(window).on('load',function(){
+        $('#loader').delay(100).fadeOut('slow');
+        $('#loader-wrapper').delay(500).fadeOut('slow');
+    });
+
+</script>
+
+<script>
+    $(document).ready(function() {
+        $('a[data-id]').click(function(event) {
+            console.log("CLICKED")
+            event.preventDefault();
+            $('a[data-id]').removeClass('active');
+            $(this).addClass('active');
+
+            var projectId = $(this).data('id');
+            $('#selectedProjectId').val(projectId);
+
+            var projectName = $(this).text();
+            var selectedProjectName = projectName;
+            $('.project-name').text(projectName);
+            var new_boards;
+            $.ajax({
+                type: "POST",
+                url: "/updated-board-name",
+                // contentType: "application/json",
+                // data: JSON.stringify(dataToSend),
+                data:{
+                    project_name : selectedProjectName
+                },
+                success: function(response) {
+                    // Handle the server response
+                    new_boards = response;
+                    console.log(new_boards);
+
+                    updateBoard(new_boards,selectedProjectName);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error updating task status: " + textStatus, errorThrown);
+                }
+            });
+
+
+        });
+
+        var firstProjectLink = $('#project-link').first();
+        var firstProjectName = firstProjectLink.text();
+        var selectedProjectName = firstProjectLink.text();
+
+        $('.project-name').text(firstProjectName).addClass('active');
+        firstProjectLink.addClass('active');
+        var new_boards;
+        $.ajax({
+            type: "POST",
+            url: "/updated-board-name",
+            // contentType: "application/json",
+            // data: JSON.stringify(dataToSend),
+            data:{
+                project_name : selectedProjectName
+            },
+            success: function(response) {
+                // Handle the server response
+                new_boards = response;
+                console.log(new_boards);
+
+                updateBoard(new_boards,selectedProjectName);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error("Error updating task status: " + textStatus, errorThrown);
+            }
+        });
+
+
+    });
+
+    function updateBoard(boards,projectname) {
+        // Get a reference to the board list element
+        var boardList = document.querySelector(".dropdown-menu.board");
+
+        // Remove any existing board items
+        while (boardList.firstChild) {
+            boardList.removeChild(boardList.firstChild);
+        }
+
+
+        // Loop through the list of boards and create new board items
+        boards.forEach(function(board) {
+            var li = document.createElement("li");
+            li.classList.add("board-item");
+            li.setAttribute("data-projectname", projectname);
+
+            var a = document.createElement("a");
+            a.setAttribute("id", "board-link");
+            a.setAttribute("data-projectname", projectname);
+            a.textContent = board;
+
+            li.appendChild(a);
+            boardList.appendChild(li);
+        });
+    }
+
+
+
+
+    $(document).ready(function() {
+        $('.dropdown-menu.board').on('click', 'a[data-projectname]', function(event) {
+            console.log("REACHED AND CLICKED");
+            event.preventDefault();
+            var boardname = $(this).text();
+            console.log(this)
+            console.log(boardname)
+
+            var projectname = $(this).data('projectname');
+            console.log(projectname);
+            $('.board-name').text(boardname);
+            var new_tasks;
+            $.ajax({
+                type: "POST",
+                url: "/updated-task-name",
+                data:{
+                    board_name : boardname,
+                    project_name : projectname
+
+                },
+                success: function(response) {
+                    // Handle the server response
+                    new_tasks = response;
+                    console.log(new_tasks);
+
+                    updateTasks(new_tasks);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error("Error updating task status: " + textStatus, errorThrown);
+                }
+            });
+
+        });
+    });
+
+
+
+
+
+
+
+</script>
+
+
+
+
+<script>
+
+
+    function updateTasks(tasks) {
+        // Clear the current Kanban board content
+        var kanbanBoard = document.querySelector('.kanban-cont');
+        kanbanBoard.innerHTML = '';
+
+        var UniqueTask = [];
+        tasks.forEach(task => {
+                if(!UniqueTask.includes(task.status)){
+                    UniqueTask.push(task.status);
+                }
+        });
+
+        // Loop through each unique task
+        for (var i = 0; i < UniqueTask.length; i++) {
+            var task = UniqueTask[i];
+
+            // Create a new Kanban list for the task
+            var kanbanList = document.createElement('div');
+            kanbanList.classList.add('kanban-list');
+            kanbanBoard.appendChild(kanbanList);
+
+            // Create a Kanban header for the task
+            var kanbanHeader = document.createElement('div');
+            kanbanHeader.classList.add('kanban-header');
+            kanbanList.appendChild(kanbanHeader);
+
+            var cardTitle = document.createElement('h6');
+            cardTitle.classList.add('card-title');
+            cardTitle.textContent = task;
+            kanbanHeader.appendChild(cardTitle);
+
+            // Create a Kanban wrap for the task
+            var kanbanWrap = document.createElement('div');
+            kanbanWrap.classList.add('kanban-wrap', 'tasks','ui-sortable');
+            kanbanList.appendChild(kanbanWrap);
+
+            // Loop through all tasks and add them to the appropriate Kanban list
+            for (var j = 0; j < tasks.length; j++) {
+                var taskItem = tasks[j];
+                console.log("-------------")
+                console.log(taskItem)
+
+                if (taskItem.status === task) {
+                    var panel = document.createElement('div');
+                    panel.classList.add('panel');
+                    panel.setAttribute('data-boardname', taskItem.board.name);
+                    kanbanWrap.appendChild(panel)
+
+                    var kanbanBox = document.createElement('div');
+                    kanbanBox.classList.add('kanban-box', 'item-box','ui-sortable-handle');
+                    kanbanBox.setAttribute('data-taskid', taskItem.id);
+                    kanbanBox.setAttribute('data-boardname', taskItem.board.name)
+                    panel.appendChild(kanbanBox);
+
+                    // Add dropdown menu for edit and delete options
+                    var dropdown = document.createElement('div');
+                    dropdown.classList.add('dropdown', 'edit');
+                    kanbanBox.appendChild(dropdown);
+
+                    var dropdownLink = document.createElement('a');
+                    dropdownLink.classList.add('btn-link');
+                    dropdownLink.setAttribute('href', '#');
+                    dropdownLink.setAttribute('data-bs-toggle', 'dropdown');
+                    dropdownLink.setAttribute('aria-expanded', 'false');
+                    dropdown.appendChild(dropdownLink);
+
+                    var editIcon = document.createElement('i');
+                    editIcon.classList.add('fas', 'fa-pencil-alt');
+                    dropdownLink.appendChild(editIcon);
+
+                    var dropdownMenu = document.createElement('div');
+                    dropdownMenu.classList.add('dropdown-menu', 'dropdown-menu-right');
+                    dropdown.appendChild(dropdownMenu);
+
+                    var deleteLink = document.createElement('a');
+                    deleteLink.classList.add('dropdown-item');
+                    deleteLink.setAttribute('href', '#');
+                    deleteLink.setAttribute('data-toggle', 'modal');
+                    deleteLink.setAttribute('data-target', '#delete_project');
+                    dropdownMenu.appendChild(deleteLink);
+
+                    var deleteIcon = document.createElement('i');
+                    deleteIcon.classList.add('bx', 'bx-trash');
+                    deleteLink.appendChild(deleteIcon);
+                    deleteLink.appendChild(document.createTextNode(' Delete'));
+
+                    var editLink = document.createElement('a');
+                    editLink.classList.add('dropdown-item');
+                    editLink.setAttribute('href', '#');
+                    editLink.setAttribute('data-toggle', 'modal');
+                    editLink.setAttribute('data-target', '#edit_card_modal');
+                    dropdownMenu.appendChild(editLink);
+
+                    var editIcon2 = document.createElement('i');
+                    editIcon2.classList.add('bx', 'bx-edit', 'mr-5');
+                    editLink.appendChild(editIcon2);
+                    editLink.appendChild(document.createTextNode('Edit'));
+
+                    // Add task content
+                    var contentBox = document.createElement('div');
+                    contentBox.classList.add('content-box');
+                    kanbanBox.appendChild(contentBox);
+                    var taskTitle = document.createElement('h6');
+                    taskTitle.textContent = taskItem.name;
+                    contentBox.appendChild(taskTitle);
+
+                    var justifycontent = document.createElement('div');
+                    justifycontent.classList.add('d-flex', 'justify-content-between');
+                    contentBox.appendChild(justifycontent);
+
+                    var assignuser = document.createElement('div');
+                    assignuser.classList.add('font-main','mb-0');
+                    justifycontent.appendChild(assignuser);
+
+                    var usericon = document.createElement('i');
+                    usericon.classList.add('far','fa-user');
+                    assignuser.appendChild(usericon);
+
+                    var usertext = document.createElement('span');
+                    usertext.textContent=taskItem.user.username;
+                    console.log(taskItem.user.username);
+                    assignuser.appendChild(usertext);
+
+
+
+                    var assigntime = document.createElement('div');
+                    assigntime.classList.add('time');
+                    justifycontent.appendChild(assigntime);
+
+
+
+                    var timetext = document.createElement('p');
+                    timetext.classList.add('font-main','mb-0');
+                    assigntime.appendChild(timetext);
+
+                    var timeicon = document.createElement('i');
+                    timeicon.classList.add('far','fa-clock');
+                    timetext.appendChild(timeicon);
+
+                    var time = document.createElement('span');
+                    time.textContent=taskItem.assign_date;
+                    timetext.appendChild(time);
+
+
+
+
+
+
+
+
+
+
+                    // Add task details
+                    }
+            }
+        }
+
+        var kanban_list = document.createElement('div');
+        kanban_list.classList.add('kanban-list');
+        kanbanBoard.appendChild(kanban_list);
+
+        var add_card = document.createElement('div');
+        add_card.classList.add('btn-add-card');
+        kanban_list.appendChild(add_card);
+
+        // Create a new a element
+        const link = document.createElement("a");
+        link.setAttribute("class", "dropdown-item font-w500 fs-16");
+        link.setAttribute("href", "#");
+        link.setAttribute("data-toggle", "modal");
+        link.setAttribute("data-target", "#add_card_modal");
+        const icon = document.createElement("i");
+        icon.setAttribute("class", "fas fa-plus mr-14");
+        link.appendChild(icon);
+        link.textContent = "Add New Status";
+        add_card.appendChild(link);
+
+
+        initializeKanban();
+    }
+
+
+
+</script>
+
+</body>
+
+</html>

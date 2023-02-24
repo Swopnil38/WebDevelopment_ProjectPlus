@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>
+    ProjectPlus - One Stop Project Manager
+    </title>
+<link rel="shortcut icon" th:href="@{/images/favicon.png}" type="image/png">
+
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+<link th:href='@{/css/boxicons.min.css}' rel='stylesheet'>
+
+<link rel="stylesheet" th:href="@{/libs/owl.carousel/assets/owl.carousel.min.css}">
+
+
+
+
+
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/grid.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+
+</head>
+<body class="sidebar-expand dark">
+
+<div th:replace="fragments/navbar.html :: sidebar"></div>
+<div th:replace="fragments/navbar.html :: main-header"></div>
+
+
+<div class="main">
+<div class="main-content dashboard">
+<div class="row">
+<div class="col-12">
+<div class="box card-box">
+<div class="icon-box bg-color-1">
+<div class="icon bg-icon-1">
+<i class="bx bxs-bell bx-tada bx-tada"></i>
+</div>
+<div class="content">
+<h5 class="title-box">Notification</h5>
+<p class="color-1 mb-0 pt-4">5 Unread notification</p>
+</div>
+</div>
+
+
+<div class="notification-list card">
+<div class="top box-header">
+<h5>Notification</h5>
+</div>
+<div class="pd-1r">
+<div class="divider"></div>
+</div>
+<div class="box-body">
+<ul class="list">
+<li class="d-flex no-seen">
+<div class="img-mess"><img class="mr-14" src="images/avatar/avt-1.png" alt="avt"></div>
+<div class="info">
+<a href="#" class="font-w600 mb-0 color-primary">Elizabeth Holland</a>
+<p class="pb-0 mb-0 line-h14 mt-6">Proin ac quam et lectus vestibulum</p>
+</div>
+</li>
+<li class="d-flex">
+<div class="img-mess"><img class="mr-14" src="images/avatar/avt-1.png" alt="avt"></div>
+<div class="info">
+<a href="#" class="font-w600 mb-0 color-primary">Elizabeth Holland</a>
+<p class="pb-0 mb-0 line-h14 mt-6">Proin ac quam et lectus vestibulum</p>
+</div>
+</li>
+</ul>
+<div class="btn-view">
+<a class="font-w600 h5" href="message.html">View All</a>
+</div>
+</div>
+</div>
+
+
+<div class="icon-box bg-color-4">
+<a class="create d-flex" href="#" data-toggle="modal" data-target="#add_project">
+<div class="icon bg-white">
+<i class="bx bx-plus"></i>
+</div>
+<div class="content d-flex align-items-center">
+<h5 class="color-white">Create New Project</h5>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-12">
+<div class="box">
+<div class="box-header">
+<div class="me-auto">
+<h4 class="card-title mb-6">Project Task</h4>
+<p class="mb-0 fs-14 mt-9 ">List of Task</p>
+</div>
+</div>
+<div class="box-body pt-20">
+<div class="themesflat-carousel-box data-effect has-bullets bullet-circle bullet24 clearfix" data-gap="30" data-column="4" data-column2="2" data-column3="1" data-auto="true">
+<div class="owl-carousel owl-theme">
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-green">G</h5>
+<a href="project-details.html" class="h5 t-title">Gold App</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+</div>
+<div class="card-center">
+<h6 class="font-w400 fs-16">Task Done:23/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 52%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+<li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-yellow">G</h5>
+<a class="h5 t-title" href="project-details.html">Landing Page</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+</div>
+<div class="card-center">
+<h6 class="font-w400">Task Done:30/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 67%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+<li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+<li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-blue">G</h5>
+<a class="h5 t-title" href="project-details.html">App Landing UI</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+</div>
+<div class="card-center">
+<h6 class="font-w400">Task Done:35/45</h6>
+ <div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 78%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+    <li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-orange">G</h5>
+<a class="h5 t-title" href="project-details.html">Blog Template UI</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+</div>
+<div class="card-center">
+ <h6 class="font-w400">Task Done:23/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 52%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+    <li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-green">G</h5>
+<a class="h5 t-title" href="project-details.html">Brand logo design</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+ </div>
+<div class="card-center">
+<h6 class="font-w400">Task Done:30/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 68%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+    <li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-yellow">G</h5>
+<a class="h5 t-title" href="project-details.html">Gold App</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+ </div>
+</div>
+</div>
+<div class="card-center">
+<h6 class="font-w400">Task Done:30/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 67%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+    <li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-blue">G</h5>
+<a class="h5 t-title" href="project-details.html">New Landing Design</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+</div>
+<div class="card-center">
+<h6 class="font-w400">Task Done:35/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 78%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+    <li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="box box-carousel">
+<div class="card-top">
+<div class="sm-f-wrap d-flex">
+<h5 class="icon-gold text-white bg-orange">G</h5>
+<a class="h5 t-title" href="project-details.html">Skote Dashboard UI</a>
+</div>
+<div class="dropdown">
+<a href="javascript:void(0);" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 6C12.5523 6 13 5.55228 13 5C13 4.44772 12.5523 4 12 4C11.4477 4 11 4.44772 11 5C11 5.55228 11.4477 6 12 6Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M12 20C12.5523 20 13 19.5523 13 19C13 18.4477 12.5523 18 12 18C11.4477 18 11 18.4477 11 19C11 19.5523 11.4477 20 12 20Z" stroke="#575757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="#" data-toggle="modal" data-target="#delete_project"><i class="bx bx-trash"></i> Delete</a>
+ <a class="dropdown-item" href="#" data-toggle="modal" data-target="#edit_project"><i class="bx bx-edit mr-5"></i>Edit</a>
+</div>
+</div>
+</div>
+<div class="card-center">
+<h6 class="font-w400">Task Done:23/45</h6>
+<div class="progress skill-progress mb-23" style="height:7px; width: 80%;">
+<div class="progress-bar bg-primary progress-animated" style="width: 52%; height:7px;" role="progressbar">
+</div>
+</div>
+<div class="sm-f-wrap d-flex justify-content-between">
+<ul class="user-list">
+    <li><img th:src="@{/images/avatar/user-1.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-2.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-3.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-4.png}" alt="user"></li>
+    <li><img th:src="@{/images/avatar/user-5.png}" alt="user"></li>
+</ul>
+<ul class="tf-icon-list">
+<li><a href="#"><i class='bx bx-calendar'></i></a></li>
+<li><a href="#"><i class='bx bxs-star'></i></a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+
+<div class="row">
+
+<div class="col-12">
+<div class="box">
+<div class="box-header">
+<h4 class="box-title mb-22">Daily Task</h4>
+</div>
+<div class="box-body">
+<div class="content-item mb-wrap">
+<div class="left">
+<h5 class="font-w500">10:00</h5>
+</div>
+<div class="right bg-orange">
+<div class="content-box w-100">
+<h5 class="font-wb text-white fs-20">iOs Dev team meeting</h5>
+<h6 class="font-w400 text-w07">10:00 - 11:00</h6>
+</div>
+</div>
+</div>
+<div class="content-item mb-wrap mb-32">
+<div class="left">
+<h5 class="font-w500">11:00</h5>
+</div>
+<div class="right d-flex pd-0">
+<div class="content-box bg-yellow">
+<h5 class="font-wb text-white fs-20">Design meeting</h5>
+<h6 class="font-w400 text-w07">11:00 - 11:30</h6>
+</div>
+<div class="content-box bg-blue">
+<h5 class="font-wb text-white fs-20">SEO meeting</h5>
+<h6 class="font-w400 text-w07">11:30 12:00</h6>
+</div>
+</div>
+</div>
+<div class="content-item mb-0 mb-wrap">
+<div class="left">
+<h5 class="font-w500">12:00</h5>
+</div>
+ <div class="right bg-light">
+<div class="content-box w-100">
+<h5 class="font-w500">Lunch Break</h5>
+<h6 class="font-w400 mt-10">12:00 - 1:00</h6>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+<div class="modal custom-modal fade" id="delete_project" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+
+<div class="modal-btn delete-action">
+<div class="row">
+<div class="col-6 mb-0">
+<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+</div>
+<div class="col-6 mb-0">
+<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal custom-modal fade" id="edit_project" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+<div class="form-header">
+<h5 class="modal-title">Edit Project</h5>
+</div>
+</div>
+<div class="modal-body">
+<form>
+<div class="row">
+<div class="col-sm-6 mb-0">
+<div class="form-group">
+<label>Project Name</label>
+<input class="form-control" value="Gold App" type="text">
+</div>
+
+</div>
+<div class="col-sm-6 mb-0">
+<div class="form-group">
+<label>Client</label>
+<select class="select">
+<option>Client 1</option>
+<option>Client 2</option>
+</select>
+</div>
+</div>
+</div>
+<div class="submit-section">
+<button class="btn btn-primary submit-btn">Save</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="overlay"></div>
+
+
+
+
+
+
+<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+<script th:src="@{/libs/moment/min/moment.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/libs/peity/jquery.peity.min.js}"></script>
+<script th:src="@{/libs/chart.js/Chart.bundle.min.js}"></script>
+<script th:src="@{/libs/owl.carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/libs/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/libs/simplebar/simplebar.min.js}"></script>
+
+
+<script th:src="@{/js/main.js}"></script>
+
+<script th:src="@{/js/dashboard.js}"></script>
+<script th:src="@{/js/shortcode.js}"></script>
+<script th:src="@{/js/pages/dashboard.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create</title>
+</head>
+<body>
+<form th:method="post" th:action="@{/user/save}" th:object="${user}">
+    <input type="text" hidden th:field="*{id}" th:value="${user.id}">
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" th:field="*{email}" th:value="${user.email}"><br>
+    <label for="fullname">Full Name:</label><br>
+    <input type="text" id="fullname" name="fullname" th:field="*{fullname}" th:value="${user.fullname}"><br>
+    <label for="mobile">Mobile Number:</label><br>
+    <input type="text" id="mobile" name="mobile" th:field="*{mobile_no}" th:value="${user.mobile_no}"><br>
+    <label for="password">Password:</label><br>
+    <input type="password" id="password" name="password" th:field="*{password}"  th:value="${user.password}"><br><br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

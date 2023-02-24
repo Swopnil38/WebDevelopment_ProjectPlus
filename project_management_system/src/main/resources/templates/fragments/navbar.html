@@ -1,0 +1,85 @@
+<div th:fragment="sidebar">
+    <div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="index.html">
+                <img th:src="@{/images/logo.png}" alt="Protend logo">
+            </a>
+            <div class="sidebar-close" id="sidebar-close">
+                <i class='bx bx-left-arrow-alt'></i>
+            </div>
+        </div>
+
+        <div class="simlebar-sc" data-simplebar>
+            <ul class="sidebar-menu tf">
+                <li class="sidebar-submenu">
+                    <a href="index.html" class="sidebar-menu-dropdown">
+                        <i class='bx bxs-home'></i>
+                        <span>Dashboard</span>
+
+                    </a>
+
+                </li>
+                <li class="sidebar-submenu">
+                    <a href="project.html" class="sidebar-menu-dropdown">
+                        <i class='bx bxs-bolt'></i>
+                        <span>Project</span>
+                    </a>
+
+                </li>
+
+                <li>
+                    <a href="board.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span>Board</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+
+<div th:fragment = "main-header" th:each="user:${userList}">
+    <div class="main-header">
+        <div class="d-flex">
+            <div class="mobile-toggle" id="mobile-toggle">
+                <i class='bx bx-menu'></i>
+            </div>
+            <div class="main-title">
+                Dashboard
+            </div>
+        </div>
+        <div class="d-flex align-items-center">
+
+
+
+
+
+            <div class="dropdown d-inline-block mt-12">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="d-block fs-20 font-w600"><span th:text="${user.username}"></span></span>
+                    <img class="rounded-circle header-profile-user" th:src="'data:image/png;base64,'+${user.imageBase64}" alt="User Profile">
+
+                    <span class="pulse-css"></span>
+
+<span class="info d-xl-inline-block  color-span">
+
+<span class="d-block fs-20 font-w600"><span th:text="${user.username}"></span></span>
+<span class="d-block mt-7"><a href="#" class="__cf_email__" ><span th:text="${user.email}"></span></a></span>
+</span>
+                    <i class='bx bx-chevron-down'></i>
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+
+                    <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle me-1"></i> <span>Profile</span></a>
+
+                    <a class="dropdown-item text-danger" href="login.html"><i class="bx bx-power-off font-size-16 align-middle me-1 text-danger"></i> <span>Logout</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

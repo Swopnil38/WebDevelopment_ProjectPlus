@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+<a th:href="@{/user/create}">Create New User</a>
+<table>
+    <thead>
+    <tr>
+        <th>Full Name</th>
+        <th>Email</th>
+        <th>Mobile Number</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user:${userList}">
+        <td th:text="${user.fullname}"></td>
+        <td th:text="${user.email}"></td>
+        <td th:text="${user.mobileNo}"></td>
+        <td>
+            <a class="edit" th:href="@{~/user/edit/}+${user.id}">Edit</a>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+</body>
+</html>

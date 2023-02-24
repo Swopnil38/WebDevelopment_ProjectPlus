@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+    ProjectPlus - One Stop Project Manager
+    </title>
+<link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+<link rel="preconnect" href="https://fonts.gstatic.com/">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="@{/css/icons.min.css}">
+
+<link rel="stylesheet" th:href="@{/libs/pg-calendar-master/pignose.calendar.css}">
+
+
+
+
+    <link th:href='@{/css/boxicons.min.css}' rel='stylesheet'>
+
+    <link rel="stylesheet" th:href="@{/libs/owl.carousel/assets/owl.carousel.min.css}">
+
+
+
+
+
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/css/grid.css}" rel="stylesheet">
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/responsive.css}" rel="stylesheet">
+</head>
+<body class="sidebar-expand counter-scroll dark">
+
+
+<div th:replace="fragments/navbar.html :: sidebar"></div>
+<div th:replace="fragments/navbar.html :: main-header"></div>
+
+
+<div class="main">
+<div class="main-content project">
+<div class="row">
+<div class="col-10 col-xl-7 col-md-9 col-sm-12">
+<div class="box card-box">
+
+
+<div class="icon-box bg-color-8 d-block">
+<div class="content text-center color-8">
+<h5 class="title-box fs-17 font-w500">Total Projects</h5>
+<div class="themesflat-counter fs-18 font-wb">
+<span class="number" data-from="0" data-to="309" data-speed="2500" data-inviewport="yes" th:text="${totalprojects}"></span>
+</div>
+</div>
+</div>
+<div class="icon-box bg-color-9 d-block">
+<div class="content text-center color-9">
+<h5 class="title-box fs-17 font-w500">Running Project</h5>
+<div class="themesflat-counter fs-18 font-wb">
+<span class="number" data-from="0" data-to="309" data-speed="2500" data-inviewport="yes" th:text="${ongoingprojects}"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="col-2 col-xl-5 col-md-3 col-sm-12">
+<div class="box h-100 d-flex align-items-center">
+<a class="create d-flex bg-primary justify-content-center" href="new-project.html">
+<div class="icon color-white pt-4 pr-8">
+<i class='bx bx-plus-circle'></i>
+</div>
+<div class="content">
+<h5 class="color-white">New Project</h5>
+</div>
+</a>
+</div>
+</div>
+</div>
+
+<div class="row">
+
+<div class="col-6 col-md-12">
+<div class="box">
+<div class="box-header  pt-0 align-items-start">
+<div class="me-auto">
+<h4 class="card-title mb-0 fs-22">Recent Task Activity</h4>
+    <p class="fs-16 font-w500 ms-auto mb-13"></p>
+</div>
+    <div class="card-options pr-3">
+        <div class="dropdown"> <a href="#" class="btn ripple btn-outline-light fs-12" > See All <i class="feather feather-chevron-down"></i> </a>
+
+        </div>
+    </div>
+</div>
+<div class="box-body pb-0">
+<ul class="message mb-2">
+<li class="dlab-chat-user" th:each="task:${taskDetails}">
+<div class="d-flex bd-highlight">
+
+<div class="user_info">
+<a class="fs-15 font-w500 mt-5 mb-5" href="message.html"><span th:text = "${task.name}"></span></a>
+<p class="fs-13 mb-0"><span th:text="${task.assign_date}">Assign Date</span></p>
+</div>
+</div>
+<div class="card-options me-0 d-flex align-items-center">
+<span class="text-primary fs-14" th:text="${task.status}"></span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-6 col-md-12">
+<div class="box">
+<div class="box-header  pt-0">
+<div class="me-auto">
+<h4 class="card-title mb-0 fs-22">In Progress Project</h4>
+</div>
+<div class="card-options pr-3">
+<div class="dropdown"> <a href="#" class="btn ripple btn-outline-light fs-12" > See All <i class="feather feather-chevron-down"></i> </a>
+
+</div>
+</div>
+</div>
+
+    <div class="box-body pb-0">
+        <ul class="message mb-2">
+            <li class="dlab-chat-user" th:each="project:${projectDetails}">
+                <div class="d-flex bd-highlight">
+
+                    <div class="user_info">
+                        <a class="fs-15 font-w500 mt-5 mb-5" href="message.html"><span th:text = "${project.name}"></span></a>
+                        <p class="fs-13 mb-0"><span>Total Task : </span> <span th:text = "${completetask}"></span><span> / </span><span th:text="${totaltask}"></span></p>
+                    </div>
+                </div>
+                <div class="card-options me-0 d-flex align-items-center">
+                    <span class="text-primary fs-14" th:text="${project.start_date}"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+</div>
+</div>
+<div class="col-12 col-md-12">
+<div class="box ">
+<div class="box-header  pt-0">
+<div class="me-auto">
+<h4 class="card-title mb-0 fs-22">Recent Projects</h4>
+</div>
+
+
+    <div class="card-options pr-3">
+        <div class="dropdown"> <a href="#" class="btn ripple btn-outline-light fs-12" > See All <i class="feather feather-chevron-down"></i> </a>
+
+        </div>
+    </div>
+
+
+
+</div>
+<div class="box-body pb-0 table-responsive activity mt-18">
+<table class="table table-vcenter text-nowrap table-bordered dataTable no-footer mw-100" id="task-profile" role="grid">
+<thead>
+<tr class="top">
+<th class="border-bottom-0 sorting fs-14 font-w500" tabindex="0" aria-controls="task-profile" rowspan="1" colspan="1" style="width: 222.312px;">Project Name</th>
+<th class="border-bottom-0 sorting fs-14 font-w500" tabindex="0" aria-controls="task-profile" rowspan="1" colspan="1" style="width: 87.9844px;">Start Date</th>
+<th class="border-bottom-0 sorting fs-14 font-w500" tabindex="0" aria-controls="task-profile" rowspan="1" colspan="1" style="width: 110.719px;">Project Status</th>
+    <th class="border-bottom-0 sorting_disabled fs-14 font-w500" rowspan="1" colspan="1" style="width: 145.391px;">Edit</th>
+<th class="border-bottom-0 sorting_disabled fs-14 font-w500" rowspan="1" colspan="1" style="width: 145.391px;">Delete</th>
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="projects, iterationStat : ${projectDetails}"
+    th:class="${(iterationStat.index % 2 == 0) ? 'odd' : 'even'}">
+<td>
+<a href="#" class="d-flex "> <span th:text = "${projects.name}"></span> </a>
+</td>
+
+<td><span th:text="${projects.start_date}"></span></td>
+
+
+<td><span class="badge badge-warning" th:text="${projects.status}"></span></td>
+    <td>
+        <a href="#" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="bx bx-edit"></i>Edit
+        </a>
+
+    </td>
+<td>
+<a href="#" class="btn-link" data-bs-toggle="dropdown" aria-expanded="false">
+    <i class="bx bx-trash"></i>Delete
+</a>
+</td>
+
+</tr>
+
+</tbody>
+</table>
+</div>
+ </div>
+</div>
+
+</div>
+<div id="add_project" class="modal custom-modal fade" role="dialog">
+<div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title">Create Project</h5>
+<button type="button" class="close" data-dismiss="modal">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<form>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Project Name</label>
+<input class="form-control" value="" type="text">
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Client</label>
+<select class="select">
+<option>Client 1</option>
+<option>Client 2</option>
+</select>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-6">
+<div class="form-group">
+<label>Start Date</label>
+<div class="cal-icon">
+<input class="form-control " type="date">
+</div>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>End Date</label>
+<div class="cal-icon">
+<input class="form-control " type="date">
+</div>
+</div>
+</div>
+ </div>
+<div class="row">
+<div class="col-sm-3">
+<div class="form-group">
+<label>Rate</label>
+<input placeholder="$50" class="form-control" value="" type="text">
+</div>
+</div>
+<div class="col-sm-3">
+<div class="form-group">
+<label>&nbsp;</label>
+<select class="select">
+<option>Hourly</option>
+<option selected>Fixed</option>
+</select>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group">
+<label>Priority</label>
+<select class="select">
+<option selected>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label>Description</label>
+<textarea rows="4" class="form-control" placeholder="Enter your message here"></textarea>
+</div>
+<div class="form-group">
+<label>Upload Files</label>
+<input class="form-control" type="file">
+</div>
+<div class="submit-section">
+<button class="btn btn-primary submit-btn">Save</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div class="modal custom-modal fade" id="delete_project" role="dialog">
+<div class="modal-dialog modal-dialog-centered">
+<div class="modal-content">
+<div class="modal-body">
+<div class="form-header">
+<h3>Delete Card</h3>
+<p>Are you sure want to delete?</p>
+</div>
+<div class="modal-btn delete-action">
+<div class="row">
+<div class="col-6 mb-0">
+<a href="javascript:void(0);" class="btn btn-primary continue-btn">Delete</a>
+</div>
+<div class="col-6 mb-0">
+<a href="javascript:void(0);" data-dismiss="modal" class="btn btn-primary cancel-btn">Cancel</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="edit_card_modal" class="modal custom-modal fade" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Edit Card</h4>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<form>
+<div class="form-group">
+<label>Image Card</label>
+<input class="form-control" type="file">
+</div>
+<div class="form-group">
+<label>Card Name</label>
+<input type="text" class="form-control" value="Food Website hero area">
+</div>
+<div class="form-group">
+<label>Due Date</label>
+<div class="cal-icon">
+<input class="form-control " type="date" value="">
+</div>
+</div>
+<div class="submit-section text-center">
+<button class="btn btn-primary submit-btn">Submit</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<div id="add_card_modal" class="modal custom-modal fade" role="dialog">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<h4 class="modal-title">Add Card</h4>
+<button type="button" class="close" data-dismiss="modal">&times;</button>
+</div>
+<div class="modal-body">
+<form>
+<div class="form-group">
+<label>Image Card</label>
+<input class="form-control" type="file">
+</div>
+<div class="form-group">
+<label>Card Name</label>
+<input type="text" class="form-control" value="">
+</div>
+<div class="form-group">
+<label>Due Date</label>
+<div class="cal-icon">
+<input class="form-control " type="date" value="">
+</div>
+</div>
+<div class="submit-section text-center">
+<button class="btn btn-primary submit-btn">Submit</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="overlay"></div>
+
+
+<script th:src="@{/libs/jquery/jquery.min.js}"></script>
+<script th:src="@{/libs/jquery/jquery-ui.min.js}"></script>
+<script th:src="@{/libs/moment/min/moment.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<script th:src="@{/libs/peity/jquery.peity.min.js}"></script>
+<script th:src="@{/libs/chart.js/Chart.bundle.min.js}"></script>
+<script th:src="@{/libs/owl.carousel/owl.carousel.min.js}"></script>
+<script th:src="@{/libs/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/countto.js}"></script>
+<script th:src="@{/libs/circle-progress/circle-progress.min.js}"></script>
+<script th:src="@{/libs/pg-calendar-master/pignose.calendar.full.min.js}"></script>
+<script th:src="@{/libs/apexcharts/apexcharts.js}"></script>
+<script th:src="@{/libs/simplebar/simplebar.min.js}"></script>
+
+
+<script th:src="@{/js/main.js}"></script>
+<script th:src="@{/js/shortcode.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+
+<script th:src="@{/js/pages/chart-circle.js}"></script>
+<script th:src="@{/js/pages/project.js}"></script>
+<script th:src="@{/js/pages/dashboard.js}"></script>
+</body>
+
+<!-- Mirrored from themesflat.com/html/protend/project.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 31 Dec 2022 11:43:53 GMT -->
+</html>
